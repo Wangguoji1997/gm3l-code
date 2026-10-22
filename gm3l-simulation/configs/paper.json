@@ -1,0 +1,12 @@
+{
+  "name": "paper",
+  "K": 3,
+  "p": 5,
+  "n_grid": [3200, 6400, 12800, 25600],
+  "replications": 500,
+  "data_seed": 2026101101,
+  "init_seed": 260918,
+  "tolerance": 1e-6,
+  "max_iter": 20000,
+  "chunk_iterations": 500
+}

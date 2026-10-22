@@ -1,0 +1,49 @@
+{
+  "K": null,
+  "seed_base": 20260926,
+  "replications": 500,
+  "train_fraction": 0.5,
+  "pca_components": 10,
+  "protocol": "transductive",
+  "method_options": {
+    "smle": {
+      "max_iter": 500,
+      "tolerance": 1e-7,
+      "kmeans_n_init": 10,
+      "pi_init_diagonal": 0.7,
+      "pi_init_off_diagonal": 0.3,
+      "seed_offsets": [0, 100003],
+      "initializers": ["spectral", "x_kmeans"]
+    },
+    "gmm": {
+      "max_iter": 500,
+      "tolerance": 1e-7,
+      "kmeans_n_init": 10,
+      "seed_offsets": [0, 100000]
+    },
+    "gmm_tied": {
+      "max_iter": 500,
+      "tolerance": 1e-7,
+      "kmeans_n_init": 10,
+      "seed_offsets": [0, 100000]
+    },
+    "baselines": {},
+    "external": {
+      "CLSBM": {
+        "command": ["{python}", "{package}/external_adapters/run_clsbm.py", "--input", "{input}", "--output", "{output}", "--seed", "{seed}", "--K", "{K}"],
+        "input_keys": ["X_train", "X_test", "A_train", "A_test_train", "A_test_test"],
+        "timeout": 3600
+      },
+      "DEC": {
+        "command": ["{python}", "{package}/external_adapters/run_clustpy.py", "--input", "{input}", "--output", "{output}", "--seed", "{seed}", "--K", "{K}", "--method", "DEC"],
+        "input_keys": ["X_train", "X_test"],
+        "timeout": 86400
+      },
+      "DipEncoder": {
+        "command": ["{python}", "{package}/external_adapters/run_clustpy.py", "--input", "{input}", "--output", "{output}", "--seed", "{seed}", "--K", "{K}", "--method", "DipEncoder"],
+        "input_keys": ["X_train", "X_test"],
+        "timeout": 86400
+      }
+    }
+  }
+}
